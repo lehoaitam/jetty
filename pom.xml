@@ -7,6 +7,70 @@
     <groupId>tamle</groupId>
     <artifactId>demojetty</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <cxf.version>3.1.0</cxf.version>
+        <jetty.version>9.3.5.v20151012</jetty.version>
+        <spring.version>4.2.1.RELEASE</spring.version>
+        <jackson.version>2.8.6</jackson.version>
+    </properties>
+    <dependencies>
 
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.3.v20140905</version>
+                <configuration>
+                    <stopPort>7006</stopPort>
+                    <stopKey>STOP</stopKey>
+                    <webAppSourceDirectory>
+                        ${project.build.directory}/${project.build.finalName}
+                    </webAppSourceDirectory>
+                    <jettyXml>jetty.xml,jetty-ssl.xml,jetty-https.xml</jettyXml>
+                    <contextXml>${basedir}/context.xml</contextXml>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
 </project>
