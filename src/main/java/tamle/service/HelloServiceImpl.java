@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 @Service("HelloService")
 public class HelloServiceImpl implements HelloService {
     public String hello(String name){
-        return "hello maven and jenkins-again1" + name;
+        return "hello maven and jenkins-again12" + name;
     }
 }
